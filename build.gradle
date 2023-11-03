@@ -4,6 +4,40 @@
  * This is a general purpose Gradle build.
  * To learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.4/samples
  */
-plugins{
+plugins {
     id 'java'
+    id 'application'
 }
+
+repositories {
+    mavenCentral() // para dependências remotas
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+mainClassName = 'gradleExample.HelloWorld'  // Corrigido o nome da classe principal
+
+jar {
+    manifest {
+        attributes 'Specification-Title': 'Projeto Git - Eng.Software'
+        attributes 'Specification-Version': '1.0'
+        attributes 'Specification-Vendor': 'ESTG'
+        attributes 'Implementation-Title': 'projetoGit.HelloWorld' 
+        attributes 'Implementation-Version': 'build01' 
+        attributes 'Implementation-Vendor': 'ESTG' 
+        attributes 'Main-Class': 'gradleExample.HelloWorld'
+    }
+}
+
+dependencies {
+    implementation group: 'joda-time', name: 'joda-time', version: '2.10.12' // remote
+    implementation files('libs/HelloWorld.jar') // local
+}
+
+task zip(type:Zip, group:"Archive", description: "Archive sources in a zip file"){
+    destinationDirectory=file('.');
+    archivesBaseName='backup.zip'
+}
+
+build.finalizedBy zip, javadoc

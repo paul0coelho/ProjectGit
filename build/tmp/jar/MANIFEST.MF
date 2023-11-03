@@ -1,2 +1,9 @@
 Manifest-Version: 1.0
+Specification-Title: Projeto Git - Eng.Software
+Specification-Version: 1.0
+Specification-Vendor: ESTG
+Implementation-Title: projetoGit.HelloWorld
+Implementation-Version: build01
+Implementation-Vendor: ESTG
+Main-Class: gradleExample.HelloWorld
 
